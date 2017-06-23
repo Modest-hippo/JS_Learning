@@ -1,7 +1,8 @@
 # Learning
 
-> 以&laquo;JavaScript权威指南&raquo;为参考主体，深化学习JavaScript基础知识。
+> 原生JavaScript知识学习总结。
 
-## 进度安排
+## 上传记录
 
-> 待定
+- 2017.6.23   Ajax&JSON
+- 

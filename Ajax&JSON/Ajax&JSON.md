@@ -9,26 +9,26 @@
 
 ## Ajax有什么限制？
 
-**==同源策略==** ：
+**同源策略** ：
 Ajax默认只能在同一个网站（站点）中使用，**不能跨域**， 最好在网站环境下测试。
 
 ## Ajax核心的对象属性方法
 Ajax其实是对于XMLHttpRequest对象的应用。
 XMLHttpRequest的组成如下：
 - 成员属性：
-1. **==responseText==** 
-2. **==readyState==**
+1. **responseText** 
+2. **readyState**
 3. status
 4. responseXML
 5. statusText
 
 - 监听事件：
-  **==onreadystatechange==**
+  **onreadystatechange**
 
 - 成员方法：
 
-1.  **==open==**(method, url [, async = true [, username = null [, password = null]]]) 
-2.  **==send==**(body)
+1.  **open**(method, url [, async = true [, username = null [, password = null]]]) 
+2.  **send**(body)
 3.  setRequestHeader(name, value)
 4.  abort()
 5.  getAllResponseHeaders()
@@ -99,13 +99,13 @@ xhr.send(null); //会调用xhr.onreadystatechange
 
 4.此时去看页面的状态
 
-![image](img/pic1.png)
+![image](https://github.com/Modest-hippo/JS_Learning/blob/master/Ajax&JSON/code/img/pic1.png?raw=true)
  
 5.点击按钮后的状态
 
-![image](img/pic1.png)
+![image](https://github.com/Modest-hippo/JS_Learning/blob/master/Ajax&JSON/code/img/pic2.png?raw=true)
 
-可以看到文本内容已经被替换成data.txt文本中的内容，这个txt文件充当的就是数据库的角色，此时这个过程只有这个div中的内容刷新了，页面其它位置实际上是没有刷新的，这就是 **==局部刷新==** 。
+可以看到文本内容已经被替换成data.txt文本中的内容，这个txt文件充当的就是数据库的角色，此时这个过程只有这个div中的内容刷新了，页面其它位置实际上是没有刷新的，这就是 **局部刷新** 。
 
 前面的代码注释中提到了，后台返回数据会保存到：xhr.responsText，以字符串形式。那么我们需要从这些字符串形式的数据中获取自己所需要的信息，例如我们要获取某一个属性的值，该怎么去处理这些数据呢？所以接下来我们要复习与Ajax息息相关的JSON。
 
@@ -126,7 +126,7 @@ JSON 值可以是：
 5. 对象（在花括号中）
 6. null
 
-注意：跟JS一般对象比 **==没有方法==** ，属性必须加双引号，注意不能是单引号。
+注意：跟JS一般对象比 **没有方法** ，属性必须加双引号，注意不能是单引号。
 
 
 ```
@@ -173,7 +173,7 @@ var div = `{
 	"height": "50px"
 }`;
 ```
-我们重新定义了div为一个JSON字符串，注意上面这个div，是由 ==**``**== 括起来的内容，这个反引号是什么意思呢？
+我们重新定义了div为一个JSON字符串，注意上面这个div，是由 **``** 括起来的内容，这个反引号是什么意思呢？
 
 反引号与单、双引号功能相同，但是有一个不同就是，在javascrip中，由反引号括起来的字符串内容可以换行，而单双引号不行。
 
@@ -210,7 +210,7 @@ div1 = JSON.stringify(div1);
 console.log(div1); //{"width":"100px","height":"50px"}
 ```
 
-我们看这个打印结果，可以看到，属性名都加上了双引号，转换成了标准的JSON对象，并且原来对象中的say()方法被直接丢掉了，因为JSON是不要方法的，**==JSON是用键值对描述数据的，不绑定功能==**。
+我们看这个打印结果，可以看到，属性名都加上了双引号，转换成了标准的JSON对象，并且原来对象中的say()方法被直接丢掉了，因为JSON是不要方法的，**JSON是用键值对描述数据的，不绑定功能**。
 
 ## 小结
 本次介绍了Ajax的基本使用和各种属性、方法，还介绍了JSON这种流行的数据传输格式。关于Ajax的跨域问题并没有详细探讨，后续讲单独讨论。

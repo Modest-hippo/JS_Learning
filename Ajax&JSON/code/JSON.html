@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>JSON</title>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			//JS对象    
+			//JSON里面不能有函数：是用键值对描述数据的，不绑定功能
+			//JSON对象里面的键值都要加引号，数值不用
+			//``反引号里面的字符、字符串可以换行，单、双引号不行
+			
+			var div = `{
+				"width": "100px",
+				"height": "50px"
+			}`;
+			
+			//JSON.Parse能够把符合JSON语法格式的字符串转换成JSON对象
+			var jsn = JSON.parse(div);
+			console.log(div.width)
+			console.log(jsn.width)
+			
+			//JSON.stringify 把一个对象转换成json字符串
+			//序列化：把一个对象转换成字符串，方便存储到数据库里面
+			//反序列化：把一个字符串转换成一个对象
+			var div1 = {
+				width: "100px",
+				height: "50px",
+				say:function(){
+					alert(1);
+				}
+			};
+			
+			div1 = JSON.stringify(div1);//方法被丢掉
+			console.log(div1)
+			
+			
+
+			
+			
+		</script>
+	</body>
+
+</html>
+<!--
+JSON JS对象表示
+
+JSON就是JS对象
+		
+-->

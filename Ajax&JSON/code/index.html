@@ -1,0 +1,57 @@
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>ajax</title>
+	</head>
+
+	<body>
+		<div id="box">我是文本</div>
+		<button id="btn" type="button">点我改变文本内容</button>
+		<script type="text/javascript">
+			var box = document.getElementById("box");
+			var btn = document.getElementById("btn");
+			btn.onclick = Fn;
+
+			function Fn() {
+				//创建XMLHttpRequest对象
+				//IE8以上、移动端都支持
+				/*
+				 局部刷新
+				 性能更高
+				 * */
+				//xhr.readyState: 0 1 2 3 4
+				var xhr = new XMLHttpRequest(); //0
+				/*
+				 * 系统记录状态
+				 1.open 
+				 2.send
+				 3.数据正在传输中
+				 4.数据接收完毕
+				 */
+
+				/*
+				 规定：后台返回数据会保存到：xhr.responsText，以字符串形式
+				 xhr.responsText，返回是XML类型，后台给的必须是XML
+				 * */
+				//第二步：当xhr对象有状态改变时候，自动调用该函数
+				xhr.onreadystatechange = function(data) {
+					//console.log(xhr.readyState)
+					//console.log(xhr.responseText)
+					box.innerHTML = xhr.responseText;
+				}
+
+				//第三步： 向一个地址发出请求   // POST - GET  //此时才开始调用事件
+				//POST：表单数据提交，用户名密码
+				//GET：取数据
+				//Ajax可以同时POST和GET数据到后台
+				xhr.open("GET", "data.txt");
+
+
+				//确认发送请求
+				xhr.send(null);
+			}
+		</script>
+	</body>
+
+</html>

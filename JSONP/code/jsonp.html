@@ -1,0 +1,100 @@
+<html>
+	<head>
+		<title>jsonp</title>
+		<meta charset="utf-8" />
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			body {
+				font-size: 15px;
+			}
+			
+			#wrap {
+				width: 500px;
+				height: 300px;
+				border: 2px solid #0f0;
+				margin: 0 auto;
+				padding-top: 50px;
+				text-align: center;
+				position: relative;
+			}
+			
+			input {
+				width: 300px;
+				height: 30px;
+				line-height: 30px;
+				font-size: 15px;
+				padding-left: 5px;
+			}
+			
+			#searchTips {
+				margin: 0 auto;
+				width: 300px;
+			}
+			
+			#searchTips ul {
+				list-style-type: none;
+				text-align: left;
+				border: 1px solid #000;
+				height: 150px;
+				overflow: hidden;
+			}
+			
+			#searchTips ul li {
+				height: 30px;
+				line-height: 30px;
+				padding-left: 5px;
+			}
+			
+			#searchTips ul li:hover {
+				background: #00FF00;
+				color: #FFF;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<input type="text" id="searchword" value="" />
+			<div id="searchTips"></div>
+			<script type="text/javascript">
+				var searchWd = document.getElementById("searchword");
+				var searchTips = document.getElementById("searchTips");
+
+				searchWd.onkeyup = function() {
+					searchTips.innerHTML = "";	//清空提示
+					var val = searchWd.value;
+					var searchScript = document.createElement("script");
+					searchScript.src = "http://suggestion.baidu.com/su?wd=" + val + "&cb=callbackFunction";
+					document.body.appendChild(searchScript);
+					searchTips.style.display = "block"; //当触发事件时显示提示框
+				};
+
+
+				function callbackFunction(json) {			
+					var searchTipStr = document.createElement("ul");
+					for(i = 0; i < json.s.length; i++) {
+						searchTipStr.innerHTML += "<li class=" + "list" + ">" + json.s[i] + "</li>";
+					}
+					//快速输入内容时会出现多个提示框的bug，此处处理
+					if(searchTips.innerHTML == ""){  
+						searchTips.appendChild(searchTipStr);
+					}
+					//将选中的提示点击后作为输入框的内容
+					var targetTip = document.getElementsByClassName("list");
+					for(i = 0; i < targetTip.length; i++) {
+						targetTip[i].onclick = function(target) {
+							searchWd.value = this.innerText;
+							searchTips.style.display = "none"; //选择特定提示项时隐藏提示框
+						}
+					}
+					if(!searchWd.value){
+						searchTips.style.display = "none";
+					}
+				}
+			</script>
+		</div>
+	</body>
+</html>

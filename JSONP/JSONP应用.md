@@ -8,7 +8,7 @@
 ## JSONP应用场景一
 - 假设我们现在想去访问，"http://127.0.0.1/jsonp/jsonp1.php?jsoncallback=callbackFunction"
 - 我们期望返回的数据是[javascript,php]
-- 而从服务端返回到客户端的数据显示为callbackFunction(["javascrip","php"])
+- 而从服务端返回到客户端的数据显示为callbackFunction([" javascrip","php"])
 
 我们看下实现的代码：
 
@@ -40,7 +40,7 @@
 
 我们通过在浏览器运行jsonp1.html可以获取到服务端传来的数据，在浏览器上弹出数据。效果图如下：
 
-![image](http://note.youdao.com/favicon.ico)
+![image](https://github.com/Modest-hippo/JS_Learning/blob/master/JSONP/img/jsonp1.png?raw=true)
 
 PS：服务端的环境由warmserver搭建，php文件在后台环境下才能生效。测试本例需要搭建后台环境。
 
@@ -109,7 +109,7 @@ if(!searchWd.value){
 上述过程中动态的创建了一个无序列表，使用百度api返回的数据进行填充，实现输入内容时，根据输入内容提示相关内容。
 效果图如下：
 
-![image](http://note.youdao.com/favicon.ico)
+![image](https://github.com/Modest-hippo/JS_Learning/blob/master/JSONP/img/baiduapi.png?raw=true)
 
 ## 小结
 本次学习是延续上次的ajax学习，利用JSONP来解决跨域问题，以上两个案例即为JSONP主要的应用场景，还用到了部分PHP的简单知识。

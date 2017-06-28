@@ -41,7 +41,8 @@
  Cookie实际上是一小段的文本信息。客户端请求服务器信息，如果服务器需要记录该用户状态（例如登录场景），就使用response向客户端浏览器颁发一个Cookie。客户端浏览器会把Cookie保存起来。当浏览器再请求该网站时，浏览器把请求的网址连同该Cookie一同提交给服务器。服务器检查该Cookie，以此来辨认用户状态。服务器还可以根据需要修改Cookie的内容。
  
  下面用示意图表示这个过程：
- ![image](http://note.youdao.com/favicon.ico)
+ 
+ ![image](https://github.com/Modest-hippo/JS_Learning/blob/master/webStorage/img/eg.png?raw=true)
  
  ### cookie的不可跨域名性
  

@@ -114,7 +114,7 @@ document.cookie = "name=Value; expires=expiration_time; path=domain_path; domain
    document.writeln(document.cookie);
 
 ```
-cookie可以通过deocument对象读取，读取结果所有cookie会以字符串形式连接到一块。
+cookie可以通过document对象读取，读取结果所有cookie会以字符串形式连接到一块。
 
 ## 小结
 本次简单介绍了cookie的基本工作原理和一些特性，并对javascrip操作cookie作了简单的介绍，下次会对cookie的应用做一些简单的demo，并且继续学习HTML5存储的方法。

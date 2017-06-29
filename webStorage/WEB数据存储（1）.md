@@ -1,6 +1,9 @@
 # WEB数据存储（1）
 > 本次学习是从前端的角度去探究一下web客户端存储的几种方式，主要包括cookie和HTML5存储（localStorage和sessionStorage）
 
+> 学习目标：掌握cookie的概念，理解cookie的工作原理和相关特性，能用javascrip增加、修改、删除cookie。
+
+
 首先我们先来了解一些相关的概念：
 - #### 会话（session）：
 
@@ -80,19 +83,6 @@ document.cookie = "name=Value; expires=expiration_time; path=domain_path; domain
 
 ```
 
-
-创建一个cookie的例子：
-
-```
-<scrip>
-    var exdate=new Date();
-    exdate.setDate(exdate.getDate()+expiredays);
-    document.cookie=c_name+ "=" +escape(value)+((expiredays==null) ? "" : ";expires="+exdate.toGMTString());
-</scrip>
-```
-
-
-
 > 参数注意事项：
 > 
 > 1、名称值对每次只能设置一个，设置多个需要多次设置，作用域相同的会自动连接到一块。
@@ -105,16 +95,87 @@ document.cookie = "name=Value; expires=expiration_time; path=domain_path; domain
 > 
 > 5、删除cookie的方法就是重新设置cookie把时间修改为过去的任意时间。
 
+
+创建一个简单cookie的例子：
+
+```
+<script type="text/javascript">
+	var date = new Date();
+	date.setTime(date.getTime()+(60*60*1000));
+	var expires = "; expires=" + date.toUTCString(); 
+	document.cookie = encodeURIComponent("name") + "=" + encodeURIComponent("前端") + expires;
+	document.write(document.cookie)
+</script>
+```
+这个例子中我们cookie的数据设定为name：value的键值对形式，并设定了该cookie的有效时间，并将cookie的内容打印了出来。
+
+浏览器的显示效果如下：
+
+![image](https://github.com/Modest-hippo/JS_Learning/blob/master/webStorage/img/cookie1.png?raw=true)
+
+![image](https://github.com/Modest-hippo/JS_Learning/blob/master/webStorage/img/cookie2.png?raw=true)
+
+
+
+
 ### javascript读取cookie
 
 很简单，如下：
 
 
 ```
-   document.writeln(document.cookie);
+   document.write(document.cookie);
 
 ```
-cookie可以通过document对象读取，读取结果所有cookie会以字符串形式连接到一块。
+cookie可以通过document对象读取，读取结果所有cookie会以字符串形式连接到一块。上述例子中已经有了应用。
+
+### javascrip创建多条cookie
+
+直接在上面的例子后再加上：
+
+```
+document.cookie = encodeURIComponent("age") + "=" + "23" + expires;
+```
+我们看到浏览器多出了一条新的cookie：
+
+![image](https://github.com/Modest-hippo/JS_Learning/blob/master/webStorage/img/cookie3.png?raw=true)
+
+![image](https://github.com/Modest-hippo/JS_Learning/blob/master/webStorage/img/cookie4.png?raw=true)
+
+### javascrip删除和修改cookie
+如果我们觉得cookie的值不是我们想要的，要去如何做呢？
+
+直接把这个cookie重写一遍即可！
+
+例如：
+
+```
+document.cookie = encodeURIComponent("name") + "=" + "javascrip" + expires;
+```
+
+我们可以看到名为name的cookie值发生了变化：
+
+![image](https://github.com/Modest-hippo/JS_Learning/blob/master/webStorage/img/cookie5.png?raw=true)
+
+那如果我们现在不需要这个cookie该如何处理？
+
+把有效时间设置成一个过期的时间即可：
+
+
+```
+var outData = new Date();	
+//设置有效时间为当前时间的前一个小时
+outData.setTime(outData.getTime()-(60*60*1000));		
+var outTime = "; expires=" + outData.toUTCString(); 
+document.cookie = encodeURIComponent("name") + "=" + "javascript" + outTime;
+```
+我们看一下结果如何：
+
+![image](https://github.com/Modest-hippo/JS_Learning/blob/master/webStorage/img/cookie6.png?raw=true)
+
+
+
+
 
 ## 小结
-本次简单介绍了cookie的基本工作原理和一些特性，并对javascrip操作cookie作了简单的介绍，下次会对cookie的应用做一些简单的demo，并且继续学习HTML5存储的方法。
+本次简单介绍了cookie的基本工作原理和一些特性，并对javascrip操作cookie作了简单的介绍，下次会继续学习HTML5存储的方法，并和cookie做一些比较。
